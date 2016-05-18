@@ -1,4 +1,5 @@
 
-public interface RandomNum {
-
+public interface RandomNum 
+{
+	int getRandomNum();
 }
