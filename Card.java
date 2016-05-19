@@ -11,11 +11,13 @@ public class Card implements RandomNumInterface {
 		int randNum = 1 + (int)(Math.random()*52);
 		return randNum;
 	}
+	@Override
 	public void setNumHistory (int n)
 	{
 		randomNumHistory [arrayCount] = n;
 		arrayCount++;
 	}
+	@Override
 	public int getHistory (int count)
 	{
 		return randomNumHistory[count];	

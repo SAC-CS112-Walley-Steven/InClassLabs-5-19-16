@@ -6,13 +6,11 @@ public class DiceCardTest{
 
 		Scanner input = new Scanner (System.in);
 
-		Dice dice = new Dice();
-		Card card = new Card();
-
-		int tryAgain = 0;
-		int numberHistory [] = new int [10];
+		RandomNumInterface [] interfaceObject = new RandomNumInterface [10];
+		interfaceObject [0] = new Dice();
+		interfaceObject [1] = new Card();
 			
-		for (int arrayCount = 1; arrayCount < numberHistory.length; arrayCount++)
+		for (int arrayCount = 1; arrayCount < 10; arrayCount++)
 		{
 			System.out.print("Press 1 to role a Dice, or 2 to pick a Card: ");
 			int userChoice = input.nextInt();
@@ -21,15 +19,15 @@ public class DiceCardTest{
 			{
 				if (userChoice == 1)
 				{
-					int randomDiceNum = dice.getRandomNum();
+					int randomDiceNum = interfaceObject[0].getRandomNum();
 					System.out.println("Random Dice number = "+randomDiceNum);
-					numberHistory [arrayCount] = randomDiceNum;
+					interfaceObject[0].setNumHistory(randomDiceNum);
 				}
 				else if (userChoice == 2)
 				{
-					int randomCardNum = card.getRandomNum();
+					int randomCardNum = interfaceObject[1].getRandomNum();
 					System.out.println("Random Card number = "+ randomCardNum);
-					numberHistory [arrayCount] = randomCardNum;
+					interfaceObject[1].setNumHistory(randomCardNum);;
 				}
 			}
 			catch (IllegalArgumentException e)
@@ -38,12 +36,18 @@ public class DiceCardTest{
 			}
 		}
 
-		System.out.println("\nArray   Random #");
-
+		System.out.println("\nArray   Dice #");
 		for (int count = 0; count <= 9; count++)
 		{
 			System.out.printf("%d       ",count);
-			System.out.println(numberHistory[count]);
+			System.out.println(interfaceObject[0].getHistory(count));
+		}
+		
+		System.out.println("\nArray   Card #");
+		for (int count = 0; count <= 9; count++)
+		{
+			System.out.printf("%d       ",count);
+			System.out.println(interfaceObject[1].getHistory(count));
 		}
 	}
 }
