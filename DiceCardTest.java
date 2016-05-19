@@ -10,8 +10,9 @@ public class DiceCardTest{
 		Card card = new Card();
 
 		int tryAgain = 0;
+		int numberHistory [] = new int [10];
 			
-		do
+		for (int arrayCount = 1; arrayCount < numberHistory.length; arrayCount++)
 		{
 			System.out.print("Press 1 to role a Dice, or 2 to pick a Card: ");
 			int userChoice = input.nextInt();
@@ -22,39 +23,27 @@ public class DiceCardTest{
 				{
 					int randomDiceNum = dice.getRandomNum();
 					System.out.println("Random Dice number = "+randomDiceNum);
-					dice.setNumHistory(randomDiceNum);
+					numberHistory [arrayCount] = randomDiceNum;
 				}
 				else if (userChoice == 2)
 				{
 					int randomCardNum = card.getRandomNum();
 					System.out.println("Random Card number = "+ randomCardNum);
-					card.setNumHistory(randomCardNum);
+					numberHistory [arrayCount] = randomCardNum;
 				}
 			}
 			catch (IllegalArgumentException e)
 			{
 				System.out.println("Random number can only be generated and stored 10 times.");
 			}
-
-			System.out.print("Press 1 to try again or 2 to print history: ");
-			tryAgain = input.nextInt();
 		}
-		while (tryAgain ==1);
 
-		System.out.println("\nArray   Dice #");
+		System.out.println("\nArray   Random #");
 
 		for (int count = 0; count <= 9; count++)
 		{
 			System.out.printf("%d       ",count);
-			System.out.println(dice.getHistory(count));
-		}
-
-		System.out.println("\nArray   Card #");
-
-		for (int count = 0; count <= 9; count++)
-		{
-			System.out.printf("%d       ",count);
-			System.out.println(card.getHistory(count));
+			System.out.println(numberHistory[count]);
 		}
 	}
 }
